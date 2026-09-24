@@ -23,7 +23,7 @@ void runFlowDemo() {
 
   // for-in 遍历
   for (final i in [1, 2, 3]) {
-    print('第${i}题');
+    print('第$i题');
   }
 
   // switch 分支

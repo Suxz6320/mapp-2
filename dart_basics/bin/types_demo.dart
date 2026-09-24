@@ -31,7 +31,8 @@ void runTypesDemo() {
 
   // 2.3 空安全四件套演示
   print('---------- 空安全 ----------');
-  String? nickname; // 可空类型，初始为null
+  // 用函数返回值让分析器无法确定是否为null，避免dead_code告警
+  String? nickname = getNickname();
 
   // ① 安全调用 ?. —— null则短路返回null
   print('nickname?.length = ${nickname?.length}');
@@ -39,10 +40,10 @@ void runTypesDemo() {
   // ② 空合并 ?? —— 左边为null时取右边
   print('nickname ?? 未填写 = ${nickname ?? '未填写'}');
 
-  // 赋值后再用
+  // 赋值后再用，类型提升后已是非空，不需要!
   nickname = 'hu';
   // ③ 空断言 ! —— 确定非null时使用，为null会抛错
-  print('nickname!.length = ${nickname!.length}');
+  print('nickname!.length = ${nickname.length}');
 
   // ④ late 延迟初始化
   // late String token; // 声明时不赋值，用之前必须赋
@@ -55,3 +56,6 @@ void runTypesDemo() {
 
   print('');
 }
+
+// 返回可空字符串，模拟从外部获取数据
+String? getNickname() => null;
